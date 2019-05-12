@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * A class for working with a place to store notes
  */
-public class INotesFileDAO implements INotesDAO {
+public class NotesFileDAO implements INotesDAO {
 
     private Context context;
 
@@ -27,7 +27,7 @@ public class INotesFileDAO implements INotesDAO {
      * @param context
      */
 
-    public INotesFileDAO(Context context) {
+    public NotesFileDAO(Context context) {
         this.context = context;
     }
 

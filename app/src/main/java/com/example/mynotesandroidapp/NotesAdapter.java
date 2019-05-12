@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.mynotesandroidapp.DAO.INotesDAO;
-import com.example.mynotesandroidapp.DAO.INotesFileDAO;
+import com.example.mynotesandroidapp.DAO.NotesFileDAO;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -34,7 +34,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
     public NotesAdapter(Context context, int sortOrder) {
 
         listNotes = new ArrayList<>();
-        INotesDAO = new INotesFileDAO(context);
+        INotesDAO = new NotesFileDAO(context);
         this.context = context;
         this.sortOrder = sortOrder;
 

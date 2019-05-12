@@ -4,7 +4,7 @@ import java.util.List;
 
 
 
-public interface NotesDAO {
+public interface INotesDAO {
     /**
      * Template starts the note name
      */

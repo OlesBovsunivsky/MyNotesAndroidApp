@@ -10,8 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.mynotesandroidapp.DAO.NotesDAO;
-import com.example.mynotesandroidapp.DAO.NotesFileDAO;
+import com.example.mynotesandroidapp.DAO.INotesDAO;
+import com.example.mynotesandroidapp.DAO.INotesFileDAO;
 
 public class NoteDetailsActivity extends AppCompatActivity {
 
@@ -86,7 +86,7 @@ public class NoteDetailsActivity extends AppCompatActivity {
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        new NotesFileDAO(context).deleteDataFile(nameNote);
+                        new INotesFileDAO(context).deleteDataFile(nameNote);
                         Toast.makeText(context, "Note Delete", Toast.LENGTH_SHORT).show();
 
                         Intent intent = new Intent(context, MainActivity.class);
@@ -135,17 +135,17 @@ public class NoteDetailsActivity extends AppCompatActivity {
 
         if (!content.equals(contentEditText)) {
 
-            NotesDAO notesDAO = new NotesFileDAO(this);
+            INotesDAO INotesDAO = new INotesFileDAO(this);
 
             System.out.println();
             if (contentEditText.length() != 0) {
-                notesDAO.writeInDateFile(
+                INotesDAO.writeInDateFile(
                         nameNote, contentEditText);
 
                 Toast.makeText(context, "Note Save", Toast.LENGTH_SHORT).show();
 
             } else {
-                notesDAO.deleteDataFile(nameNote);
+                INotesDAO.deleteDataFile(nameNote);
                 Toast.makeText(context, "Note Delete", Toast.LENGTH_SHORT).show();
             }
 

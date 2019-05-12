@@ -9,8 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.mynotesandroidapp.DAO.NotesDAO;
-import com.example.mynotesandroidapp.DAO.NotesFileDAO;
+import com.example.mynotesandroidapp.DAO.INotesDAO;
+import com.example.mynotesandroidapp.DAO.INotesFileDAO;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
      */
     private ArrayList<String> listNotes;
 
-    private NotesDAO notesDAO;
+    private INotesDAO INotesDAO;
 
     /**
      * Sort order
@@ -34,7 +34,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
     public NotesAdapter(Context context, int sortOrder) {
 
         listNotes = new ArrayList<>();
-        notesDAO = new NotesFileDAO(context);
+        INotesDAO = new INotesFileDAO(context);
         this.context = context;
         this.sortOrder = sortOrder;
 
@@ -84,12 +84,12 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
     private void putAllNotes() {
 
         ArrayList<Long> nameFileList = new ArrayList<>();
-        nameFileList.addAll(notesDAO.getAllNameNotes());
+        nameFileList.addAll(INotesDAO.getAllNameNotes());
 
         sortList(nameFileList, 0);
 
         if (nameFileList.size() != 0) {
-            listNotes.addAll(notesDAO.openAllNotes(nameFileList));
+            listNotes.addAll(INotesDAO.openAllNotes(nameFileList));
             maxLastKeyNote(nameFileList.get(0), listNotes);
 
             sortList(listNotes, sortOrder);
@@ -125,10 +125,10 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
 
         if (maxKey >= System.currentTimeMillis()) {
 
-            notesDAO.deleteAllFileNote();
+            INotesDAO.deleteAllFileNote();
 
             for (int i = listNotes.size() - 1; i >= 0; i--) {
-                notesDAO.writeInDateFile(String.valueOf(System.currentTimeMillis()), arrayList.get(i));
+                INotesDAO.writeInDateFile(String.valueOf(System.currentTimeMillis()), arrayList.get(i));
             }
 
             putAllNotes();

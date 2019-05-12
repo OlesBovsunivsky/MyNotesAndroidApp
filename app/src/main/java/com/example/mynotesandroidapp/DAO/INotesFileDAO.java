@@ -1,7 +1,6 @@
 package com.example.mynotesandroidapp.DAO;
 
 import android.content.Context;
-import android.util.ArrayMap;
 import android.widget.Toast;
 
 import java.io.File;
@@ -18,7 +17,7 @@ import java.util.List;
 /**
  * A class for working with a place to store notes
  */
-public class NotesFileDAO implements NotesDAO {
+public class INotesFileDAO implements INotesDAO {
 
     private Context context;
 
@@ -28,7 +27,7 @@ public class NotesFileDAO implements NotesDAO {
      * @param context
      */
 
-    public NotesFileDAO(Context context) {
+    public INotesFileDAO(Context context) {
         this.context = context;
     }
 
@@ -179,7 +178,7 @@ public class NotesFileDAO implements NotesDAO {
     @Override
     public ArrayList<Long> getAllNameNotes() {
 
-        String nameFileInFileSystem = NotesDAO.nameFileInFileSystem;
+        String nameFileInFileSystem = INotesDAO.nameFileInFileSystem;
         File[] file = context.getFilesDir().listFiles();
 
         ArrayList<Long> nameFileList = new ArrayList();
